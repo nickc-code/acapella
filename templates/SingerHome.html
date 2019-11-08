@@ -1,0 +1,56 @@
+{% extends 'Layout.html' %}
+
+{% block content %}
+<hr>
+<div class="background"> 
+  <div class="col-md-2 SideBar">
+    <h4>Dashboard</h4>
+    <hr>
+    <h5>Groups</h5>
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <ul>
+        <li><span class="item-text" id="Soppranos">Soppranos</span></li>
+        <li><span class="item-text" id="Altos">Altos</span></li>
+        <li><span class="item-text" id="Tennors">Tennors</span></li>
+        <li><span class="item-text" id="Barritones">Barritones</span></li>
+        <li><span class="item-text" id="BeatBoxers">BeatBoxers</span></li>
+      </ul>  
+    </div>
+    <hr>
+    <h5>Categories</h5>
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <ul>
+        <li><span class="item-text" id="SocialMedia">Social Media</span></li>
+        <li><span class="item-text" id="SingingExercises">Singing Excercises</span></li>
+        <li><span class="item-text" id="Logistics">Logistics</span></li>
+      </ul>  
+    </div>
+
+    
+  </div>
+
+</div>
+
+
+
+
+
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'SingerHome.js') }}"></script>
+<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400"/>
+  <style type="text/css">
+    .SideBar {
+      /*background-color: lightgrey;*/
+      border-right: solid black;
+    }
+    .item-text:hover {
+      color: #2693ff;
+      cursor: pointer;
+    }
+  </style> 
+
+{% endblock %}
