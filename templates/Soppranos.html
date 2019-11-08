@@ -1,0 +1,32 @@
+{% extends 'Layout.html' %}
+
+{% block content %}
+<hr>
+<div class="container"> 
+  <div class="Jumbotron">
+    <h1>Soppranos</h1>
+  </div>
+
+</div>
+
+
+
+
+
+
+{% endblock %}
+{% block scripts %}
+<!-- <script type="text/javascript" src="{{ url_for('static', filename = 'Soppranos.js') }}"></script> -->
+<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400"/>
+  <style type="text/css">
+    .SideBar {
+      /*background-color: lightgrey;*/
+      border-right: solid black;
+    }
+    .item-text:hover {
+      color: #2693ff;
+      cursor: pointer;
+    }
+  </style> 
+
+{% endblock %}
