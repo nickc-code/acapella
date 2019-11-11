@@ -8,7 +8,9 @@ app = Flask(__name__)
 def Home():
 	return render_template('Home.html')
 
-
+@app.route('/leader_board')
+def leaderboard():
+	return render_template('leader_dashboard.html')
 
 
 
