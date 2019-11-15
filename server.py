@@ -8,6 +8,14 @@ app = Flask(__name__)
 def Home():
 	return render_template('Home.html')
 
+@app.route('/SingerHome')
+def SingerHome():
+	return render_template('SingerHome.html')
+
+@app.route('/Soppranos')
+def Soppranos():
+	return render_template('Soppranos.html')
+
 
 
 
