@@ -12,6 +12,10 @@ def Home():
 def SingerHome():
 	return render_template('SingerHome.html')
 
+@app.route('/UserHome')
+def UserHome():
+	return render_template('UserHome.html')
+
 @app.route('/Soppranos')
 def Soppranos():
 	return render_template('Soppranos.html')
