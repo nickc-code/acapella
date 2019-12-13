@@ -1,0 +1,236 @@
+<head>
+
+<style>
+    #add{
+        margin-bottom: 30px;
+    }
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box;}
+
+    /* Button used to open the contact form */
+    .open-button {
+      cursor: pointer;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      width: 500px;
+      padding: 10px;
+      background-color: white;
+    {#border: 3px solid #f1f1f1;#}
+
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text], .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom:10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover, .open-button:hover {
+      opacity: 1;
+    }
+</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        function openForm() {
+          document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+        }
+        $(document).ready(function(){
+             $("#add").click(function(){
+
+            });
+        });
+    </script>
+</head>
+{% extends 'Layout.html' %}
+
+{% block content %}
+<body>
+{{ form.csrf_token }}
+
+ <hr>
+<div class="container">
+  <div class="Jumbotron">
+    <h1>Memory Exercises</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <button class="btn btn-primary open-button" id="add" onclick="openForm()">Add an Exercise</button>
+        <div class="form-popup" id="myForm">
+			<div>
+				<form method="POST" action="" class="form-container">
+					{{ form.hidden_tag() }}
+					<fieldset class="form-group">
+						<legend class="border-bottom md-4"> {{ legend }}</legend>
+						<div class="form-group">
+							{{ form.title.label(class="form-control-label") }}
+							{% if form.title.errors %}
+								{{ form.title(class="form-control form-conrtol-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.title.errors %}
+										<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.title(class="form-control form-conrtol-lg") }}
+							{% endif %}
+						</div>
+                    </fieldset>
+                    <fieldset class="form-group">
+						<div class="form-group">
+{#							{{ form.due_date.label(class="form-control-label") }}#}
+                            due date
+							{% if form.date_due.errors %}
+								{{ form.date_due(class="form-control form-conrtol-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.date_due.errors %}
+										<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.date_due(class="form-control form-conrtol-lg") }}
+							{% endif %}
+						</div>
+                    </fieldset>
+                    <fieldset class="form-group">
+						<div class="form-group">
+							{{ form.description.label(class="form-control-label") }}
+							{% if form.description.errors %}
+								{{ form.description(class="form-control form-conrtol-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.description.errors %}
+										<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.description(class="form-control form-conrtol-lg") }}
+							{% endif %}
+						</div>
+                    </fieldset>
+                    <fieldset class="form-group">
+						<div class="form-group">
+							{{ form.link.label(class="form-control-label") }}
+							{% if form.link.errors %}
+								{{ form.link(class="form-control form-conrtol-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for error in form.link.errors %}
+										<span>{{ error }}</span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.link(class="form-control form-conrtol-lg") }}
+							{% endif %}
+						</div>
+                    </fieldset>
+                    <div class="form-group">
+						{{ form.submit(class="btn btn-outline-info submit",value="submit")}}
+					</div>
+                    <button type="button" class="btn cancel" onclick="closeForm()">close</button>
+                </form>
+			    </div>
+		    </div>
+	    </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12"><center><h2>All Exercises</h2></center></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+      {% for exercises in exercise %}
+{#            <div class="count"></div>#}
+
+            <article class="media content-section" style="width:30%;margin: 10px;float: left;">
+
+              <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2" href="{{ url_for('user_posts', username=exercises.author.username) }}">{{ exercises.author.username }}</a>
+                  <small class="text-muted">Due Date: {{ exercises.date_due }}</small>
+                </div>
+                <!-- <h2 class="article-title">{{ exercises.title }}</h2> -->
+                <h2><a class="article-title" href="{{ url_for('exercise', exercise_id=exercises.id) }}">{{ exercises.title }}</a></h2>
+                <p class="article-content">{{ exercises.description }}</p>
+              <button type="button" class="btn btn-outline-info" onclick="window.location.href='{{ exercises.link }}';">link</button>
+
+{#                <p><a class="article-title" href="{{ exercises.link }}">link: {{ exercises.link }}</a></p>#}
+              </div>
+            </article>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+{% endblock %}
+
+{% block scripts %}
+<!-- <script type="text/javascript" src="{{ url_for('static', filename = 'Soppranos.js') }}"></script> -->
+<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400"/>
+  <style type="text/css">
+    .SideBar {
+      /*background-color: lightgrey;*/
+      border-right: solid black;
+    }
+    .item-text:hover {
+      color: #2693ff;
+      cursor: pointer;
+    }
+
+    body {
+      counter-reset: section;
+    }
+
+    .count::before {
+      counter-increment: section;
+      content: "" counter(section) ") ";
+      font-size: 12pt;
+      font-weight: bold;
+    }
+  </style> 
+
+{% endblock %}

@@ -1,0 +1,146 @@
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    
+    <!-- JQuery -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- JQuery -->
+    <script>
+    </script>
+
+    <style>
+        header{
+                background-color: white;
+            }
+            header::after{
+                content: '';
+                display: table;
+                clear: both;
+            }
+            nav{
+                float: right;
+            }
+            nav ul{
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            nav li{
+                display: inline-block;
+                margin-left: 80px;
+                padding-top: 31px;
+
+                position: relative;
+
+            }
+            nav a{
+                color: black;
+                text-decoration: none;
+                text-transform: none;
+                font-size: 15px;
+            }
+            .logo{
+                float: left;
+                width:14%;
+                height: 9%;
+                padding-bottom: 0px;
+
+            }
+            nav a:hover{
+                color: purple;
+                text-decoration: none;
+            }
+
+            nav a::before{
+                content: "";
+                display: block;
+                height: 5px;
+                background-color: lightgrey;
+                top:0;
+                position: absolute;
+                width: 0%;
+                transition: all ease-in-out 200ms;
+
+            }
+
+            nav a:hover::before{
+                width:100%;
+            }
+
+
+    </style>
+    
+    
+    
+</head>
+<body>
+    <header>
+            <div class="container">
+            <img class="logo" src="https://i.ibb.co/znfcRK8/Screen-Shot-2019-11-08-at-6-46-23-AM.png">
+                <nav>
+                    <ul>
+
+                        <li><a href="/SingerHome">Group Home</a></li>
+                        <!-- <li><a href="/Search">All Members</a></li> -->
+                        <li><a href="{{ url_for('UserHome') }}">User Dashboard</a></li>
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('new_post') }}">Assign Task </a></li>
+                            <!-- <li><a href="/tasks">Add a Task</a></li> -->
+
+                            <li><a href="/account">Account</a></li>
+                            <li><a href="/logout">Log out</a></li>
+                        {% else%}
+                            <li><a href="/login">Log in</a></li>
+                            <li><a href="/register">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %} 
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}
+
+        {% endblock %}
+
+        {% block scripts %}
+
+    {% endblock %}
+        
+
+        
+
+    </div>
+     <script src="https://code.jquery.com/jquery-3.1.1.min.js"  crossorigin="anonymous"></script>
+
+{#    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+</body>
+</html>
+

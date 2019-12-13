@@ -1,0 +1,149 @@
+{% extends 'Layout.html' %}
+
+{% block content %}
+<div class="c">
+  <a href="https://ibb.co/JRyXxfY"><img class="sheetmusic" src="https://i.ibb.co/8DdFzWy/concert-musique-partition-cle-104084.jpg" alt="concert-musique-partition-cle-104084" border="0"></a>
+  <div class="centered"><h1 id="DashboardName"> {{ current_user.username }}'s Dashboard</h1></div>
+  <div class="container">
+    <div class="absolute card" style="width: 18rem;">
+      <img class="cardImage" src="https://i.ibb.co/MStTrj1/photo-of-head-bust-print-artwork-724994.jpg">
+      <div class="card-body">
+        <h5 class="card-title">Memory</h5>
+        <p class="card-text">See Your Memory Assignments</p>
+        <a href="/Soppranos" class="btn btn-primary">Memory Exercises</a>
+      </div>
+    </div>
+
+    <div class="absolute2 card" style="width: 18rem;">
+      <img class="cardImage" src="https://i.ibb.co/ZYr3wfH/analog-clock-sketch-in-black-surface-745365.jpg">
+      <div class="card-body">
+        <h5 class="card-title">Tempo</h5>
+        <p class="card-text">See Your Tempo Assignments</p>
+        <a href="/Tempo" class="btn btn-primary">Tempo Exercises</a>
+      </div>
+    </div>
+
+    <div class="absolute3 card" style="width: 18rem;">
+      <img class="cardImage" src="https://i.ibb.co/xYPLDm8/hand-metal-music-musician-33779.jpg">
+      <div class="card-body">
+        <h5 class="card-title">Pitch</h5>
+        <p class="card-text">See Your Pitch Assignments</p>
+        <a href="/Pitch" class="btn btn-primary">Pitch Exercises</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div>
+  <center><h1>Personal Assignments</h1></center>
+  {% for post in posts %}
+    {% if post.content2==current_user.username %}
+        <article class="media content-section count">
+          <img class=" rounded-circle article-img" src="{{ url_for('static',  filename='profile_pic/' + post.author.image_file) }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+              <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+        </article>
+    {% endif %}
+
+
+
+  {% endfor %}
+</div>
+
+
+
+
+
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'SingerHome.js') }}"></script>
+<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400"/>
+  <style type="text/css">
+    .sheetmusic {
+      width:100%;
+      height: 500px;
+      object-fit:cover;
+    }
+    .cardImage {
+      width:100%;
+      height: 98px;
+      object-fit:cover;
+      border-bottom: 2px solid black;
+    }
+    .c{
+      position: relative;
+      text-align: center;
+      color: white;
+      margin-bottom: 200px;
+    }
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: large;
+    }
+    .absolute {
+      position: absolute;
+      top: 400px;
+      left: 200px;
+/*      width: 200px;
+      height: 100px;*/
+      border: 3px solid black;
+      color: black;
+    }
+
+    .absolute2 {
+      position: absolute;
+      top: 400px;
+      right: 575px;
+/*      width: 200px;
+      height: 100px;*/
+      border: 3px solid black;
+      color: black;
+    }
+
+    .absolute3 {
+      position: absolute;
+      top: 400px;
+      right: 200px;
+/*      width: 200px;
+      height: 100px;*/
+      border: 3px solid black;
+      color: black;
+    }
+    #DashboardName::first-letter{
+      text-transform: uppercase;
+
+    }
+
+    body {
+      counter-reset: section;
+    }
+
+    .count::before {
+      counter-increment: section;
+      content: "" counter(section) ": ";
+    }
+
+  </style> 
+
+{% endblock %}
+
+
+
+<!-- <a href="https://ibb.co/wgPHVbQ"><img src="https://i.ibb.co/MStTrj1/photo-of-head-bust-print-artwork-724994.jpg" alt="photo-of-head-bust-print-artwork-724994" border="0"></a> -->
+
+ <!-- <a href="https://ibb.co/fnWbKX8"><img src="https://i.ibb.co/ZYr3wfH/analog-clock-sketch-in-black-surface-745365.jpg" alt="analog-clock-sketch-in-black-surface-745365" border="0"></a> -->
+
+ <!-- <a href="https://ibb.co/cYF676V"><img src="https://i.ibb.co/6XPHfHL/black-and-gray-microphone-164829.jpg" alt="black-and-gray-microphone-164829" border="0"></a> -->
+
+ <!-- <a href="https://ibb.co/m01TGvF"><img src="https://i.ibb.co/xYPLDm8/hand-metal-music-musician-33779.jpg" alt="hand-metal-music-musician-33779" border="0"></a> -->

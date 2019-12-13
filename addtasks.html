@@ -1,0 +1,113 @@
+{#Michaella Schaszberger#}
+{#mls2290#}
+{#UI Design, HW6#}
+<html>
+	<head>
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script type="text/javascript" src="{{ url_for('static', filename = 'addtasks.js') }}"></script>
+
+        <script>
+            var sales = {{sales|tojson}};
+        </script>
+
+        <!-- bootstrap same as before -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+		<style>
+			.columbia_paper{
+				background-color: lightgrey;
+				font-size: 35px;
+				height: 160px;
+				padding:50px;
+			}
+            #reams{
+                padding-left:0px;
+            }
+			.spacing{
+				float:left;
+			}
+
+			.submit_button{
+				display: inline-block;
+				background-color: blue;
+				color:white;
+				border-radius: 10px;
+				float:right;
+				width:75px;
+				height:40px;
+                margin-left:30px;
+			}
+			.btn{
+				display: inline-block;
+				float:left;
+				background-color: yellow;
+			}
+			.reams_input{
+				display: inline-block;
+				width: 350px;
+                margin-left: -95px;
+			}
+
+			#clients{
+				margin-left:10px;
+				width: 350px;
+			}
+
+			.orders{
+				float:left;
+			}
+			#remove{
+				position:absolute; top:0; right:0;
+				border-radius: 10px;
+				margin-right:-32px;
+			}
+			.input_form{
+				/*margin-left:-13px;*/
+			}
+			.row{
+				margin-bottom: 25px;
+			}
+			.spacing_top{
+				margin-top:50px;
+			}
+		</style>
+	</head>
+	<body>
+    {% extends "Layout.html" %}
+            {% block content %}
+		<div class = "container">
+			<div class = "header">
+				<div class = "columbia_paper">
+						<h1>Add a Task</h1>
+				</div>
+			</div>
+			<div id = "salesform">
+				<div class = "row spacing_top">
+					<div class = "col-md-2 spacing">
+						Add a task here:
+					</div>
+                    <div class = "input_form">
+							<input type="text" placeholder = "Assigned By" id="assigned">
+						</div>
+					<div class = "col-md-4 spacing">
+						<div class = "input_form">
+							<input type="text" placeholder = "Member" id="member">
+						</div>
+					</div>
+					<div class = "col-md-2 spacing">
+						<div class = "reams_input">
+							<input type = "text" placeholder = "Task" id='task' class = "reams_input">
+						</div>
+					</div>
+						<button class="button submit_button" id = "submit">Submit</button>
+				</div>
+				<br>
+				<div id ="record">
+				</div>
+			</div>
+		</div>
+            {%  endblock %}
+
+	</body>
+</html>

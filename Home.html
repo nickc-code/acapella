@@ -1,0 +1,105 @@
+{% extends 'Layout.html' %}
+
+{% block content %}
+<div class="background"> 
+  <br>
+  <br>
+  <br>
+  <br><br>
+  <br><br>
+  <br><br>
+  <br><br>
+  <br>
+  <h1 style = "font-family:georgia,garamond,serif;font-size:40px; padding-left: 165px;"> Be More Organized</h1>
+  <h1 style = "font-family:georgia,garamond,serif;font-size:40px; padding-left: 200px;"> With Session</h1>
+  <p style = "font-family:georgia,garamond,serif;font-size:16px;font-style:italic; padding-left: 160px;">
+     The workflow app for all your acapella needs
+  </p>
+  <br><br>
+  <!-- 
+  <br><br>
+  <br><br>
+ --> 
+  
+    <div class="row">
+      <!-- <div class="col-md-1"></div> -->
+      <!-- <div class="col-md-3" style="padding-left: 50px;" id="exec">
+        <button class="button button1">Log in</button>
+      </div> -->
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <button class="button button1" id="login">Log in</button>
+      </div>
+      
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'Home.js') }}"></script>
+<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400"/>
+  <style type="text/css">
+    .v1 {
+      border-right: 20px solid lightgrey;
+      height: 718px;
+    }
+    .v2 {
+      border-left: 30px solid lightgrey;
+      height: 718px;
+    }
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .background{
+      background-image: url("https://i.ibb.co/x74mwCZ/Screen-Shot-2019-11-08-at-7-06-50-AM.png");
+        background-size: cover;
+  height: 92%;
+  overflow: hidden;
+    }
+  
+/**/
+.button {
+/*  background-color: #4CAF50; /* Green */*/
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid black;
+}
+
+.button1:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color: black; 
+  color: white;
+}
+
+
+
+
+
+
+
+
+  </style> 
+
+{% endblock %}
